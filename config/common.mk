@@ -68,6 +68,10 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/aosp/overlay
 DEVICE_PACKAGE_OVERLAYS += vendor/aosp/overlay/common
 
+# Enable one-handed mode
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.support_one_handed_mode=true
+
 # Accents
 PRODUCT_PACKAGES += \
     BlackAccent \
