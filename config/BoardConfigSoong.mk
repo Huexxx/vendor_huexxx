@@ -21,3 +21,10 @@ define addVar
 endef
 
 $(foreach v,$(EXPORT_TO_SOONG),$(eval $(call addVar,$(v))))
+
+SOONG_CONFIG_NAMESPACES += customQcomVars
+SOONG_CONFIG_customQcomVars += \
+    libbinder_has_the_same_header
+
+# Soong variables
+SOONG_CONFIG_customQcomVars_libbinder_has_the_same_header := $(TARGET_SAME_BINDER_HEADER_WITH_SYSTEM)
