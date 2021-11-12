@@ -124,3 +124,6 @@ include vendor/aosp/config/charger-res.mk
 include vendor/aosp/config/branding.mk
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
+
+# Lawnchair
+-include vendor/huexxx-prebuilts/packages/apps/Lawnchair/lawnchair.mk
