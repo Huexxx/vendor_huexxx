@@ -17,6 +17,10 @@ PRODUCT_COPY_FILES += \
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
+    
+# Enable Microphone and Camera toggles, and Game Dashboard
+PRODUCT_COPY_FILES += \
+    vendor/aosp/config/permissions/ext.xml:system/etc/permissions/ext.xml
 
 # Enable wireless Xbox 360 controller support
 PRODUCT_COPY_FILES += \
