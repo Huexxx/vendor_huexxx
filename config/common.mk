@@ -68,32 +68,6 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/aosp/overlay
 DEVICE_PACKAGE_OVERLAYS += vendor/aosp/overlay/common
 
-# Accents
-PRODUCT_PACKAGES += \
-    BlackAccent \
-    BlueAccent \
-    BrownAccent \
-    CyanAccent \
-    GreenAccent \
-    OrangeAccent \
-    PinkAccent \
-    PurpleAccent \
-    RedAccent \
-    YellowAccent
-
-# Fonts & Customizations
-PRODUCT_PACKAGES += \
-    BlackTheme \
-    LatoFont \
-    NavigationBarNoHint \
-    RubikFont
-
-# Themes
-PRODUCT_PACKAGES += \
-    ThemePicker \
-    ThemesStub \
-    WallpapersOverlay
-
 # Face Unlock
 ifeq ($(TARGET_FACE_UNLOCK), true)
 PRODUCT_PACKAGES += \

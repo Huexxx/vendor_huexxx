@@ -2,10 +2,6 @@
 
 IS_PHONE := true
 
-# World APN list
-PRODUCT_PACKAGES += \
-    apns-conf.xml
-
 # SPN-CONF
 PRODUCT_COPY_FILES += \
     vendor/aosp/prebuilt/common/etc/selective-spn-conf.xml:system/etc/selective-spn-conf.xml
