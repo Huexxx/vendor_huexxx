@@ -102,3 +102,6 @@ include vendor/aosp/config/branding.mk
 # Lawnchair
 -include vendor/huexxx-prebuilts/packages/apps/Lawnchair/lawnchair.mk
 -include vendor/huexxx-prebuilts/packages/apps/Lawnicons/lawnicons.mk
+
+# gapps_inbuilt
+$(call inherit-product, vendor/huexxx-prebuilts/packages/gapps_inbuilt/gapps_inbuilt.mk)
