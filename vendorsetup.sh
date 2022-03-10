@@ -9,3 +9,5 @@ done
 # Override host metadata to make builds more reproducible and avoid leaking info
 export BUILD_HOSTNAME=aospextended-build
 export BUILD_USERNAME=android-build
+
+export SKIP_ABI_CHECKS=true
