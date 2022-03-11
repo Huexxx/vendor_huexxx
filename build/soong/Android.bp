@@ -67,3 +67,20 @@ libbinder_has_the_same_header {
         },
     },
 }
+
+soong_config_module_type {
+    name: "qti_cryptfshw_qsee",
+    module_type: "cc_defaults",
+    config_namespace: "customQcomVars",
+    bool_variables: ["should_wait_for_qsee"],
+    properties: ["cflags"],
+}
+
+qti_cryptfshw_qsee {
+    name: "qti_cryptfshw_qsee_defaults",
+    soong_config_variables: {
+        should_wait_for_qsee: {
+            cflags: ["-DWAIT_FOR_QSEE"],
+        },
+    },
+}
