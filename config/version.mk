@@ -28,3 +28,10 @@ ifeq ($(TARGET_USES_AOSP_RECOVERY), true)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.recovery_update=true
 endif
+
+# Add build type to OTAPACKAGE
+ifeq ($(WITH_GAPPS),true)
+PACKAGE_BUILD_TYPE ?= GMS
+else
+PACKAGE_BUILD_TYPE ?= VANILLA
+endif
