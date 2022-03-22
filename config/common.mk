@@ -103,9 +103,6 @@ include vendor/aosp/config/branding.mk
 -include vendor/huexxx-prebuilts/packages/apps/Lawnchair/lawnchair.mk
 -include vendor/huexxx-prebuilts/packages/apps/Lawnicons/lawnicons.mk
 
-# gapps_inbuilt
-$(call inherit-product, vendor/huexxx-prebuilts/packages/gapps_inbuilt/gapps_inbuilt.mk)
-
 # Pre-granted product permissions
 PRODUCT_COPY_FILES += \
     vendor/aosp/config/permissions/default-permissions-product-huexxx.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/default-permissions/default-permissions-product-huexxx.xml
