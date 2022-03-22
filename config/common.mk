@@ -106,3 +106,45 @@ include vendor/aosp/config/branding.mk
 # Pre-granted product permissions
 PRODUCT_COPY_FILES += \
     vendor/aosp/config/permissions/default-permissions-product-huexxx.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/default-permissions/default-permissions-product-huexxx.xml
+
+# Gapps
+$(call inherit-product, vendor/aosp/config/gapps.mk)
+
+PRODUCT_PACKAGES += \
+    libjni_latinimegoogle
+
+ifneq ($(WITH_GAPPS),true)
+# Pixel sysconfig
+PRODUCT_COPY_FILES += \
+    vendor/aosp/prebuilt/common/etc/sysconfig/pixel.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel.xml \
+    vendor/aosp/prebuilt/common/etc/permissions/privapp-permissions-google.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-google.xml
+endif
+
+# Pixel sysconfig from Pixel XL (Photos)
+PRODUCT_COPY_FILES += \
+    vendor/aosp/prebuilt/common/etc/sysconfig/pixel_2016_exclusive.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_2016_exclusive.xml
+
+# Needed by some RILs and for some gApps packages
+PRODUCT_PACKAGES += \
+    librsjni \
+    libprotobuf-cpp-full
+
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    keyguard.no_require_sim=true \
+    ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
+    ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
+    ro.com.android.wifi-watchlist=GoogleGuest \
+    ro.setupwizard.mode=OPTIONAL \
+    ro.com.android.dateformat=MM-dd-yyyy \
+    ro.com.android.dataroaming=false \
+    ro.atrace.core.services=com.google.android.gms,com.google.android.gms.ui,com.google.android.gms.persistent \
+    ro.setupwizard.rotation_locked=true \
+    ro.opa.eligible_device=true \
+    persist.debug.wfd.enable=1 \
+    persist.sys.wfd.virtual=0 \
+    persist.sys.dun.override=0 \
+    ro.storage_manager.enabled=true \
+    persist.sys.recovery_update=false \
+    ro.com.google.ime.bs_theme=true \
+    ro.com.google.ime.theme_id=5 \
+    persist.sys.disable_rescue=true
