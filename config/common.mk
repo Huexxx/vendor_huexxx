@@ -147,6 +147,9 @@ PRODUCT_PACKAGES += \
 endif
 endif
 
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    dalvik.vm.systemuicompilerfilter=speed
+
 # StitchImage
 PRODUCT_PACKAGES += \
     StitchImage
