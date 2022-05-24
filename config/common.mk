@@ -50,11 +50,13 @@ PRODUCT_COPY_FILES += \
     vendor/aosp/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
 endif
 
+PRODUCT_PACKAGES += \
+    SettingsIntelligenceGoogle
+
 ifneq ($(WITH_GAPPS),true)
 PRODUCT_PACKAGES += \
     ThemePicker \
     fossbrowser \
-    SettingsIntelligenceGoogle \
     Launcher3QuickStep
     
 PRODUCT_DEXPREOPT_SPEED_APPS += \
