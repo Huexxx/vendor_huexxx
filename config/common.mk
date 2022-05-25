@@ -53,14 +53,18 @@ endif
 PRODUCT_PACKAGES += \
     SettingsIntelligenceGoogle
 
-ifneq ($(WITH_GAPPS),true)
+ifneq (true,$(filter true, $(WITH_GAPPS) $(WITH_CORE_GAPPS)))
 PRODUCT_PACKAGES += \
-    ThemePicker \
     fossbrowser \
     Launcher3QuickStep
     
 PRODUCT_DEXPREOPT_SPEED_APPS += \
     Launcher3QuickStep
+endif
+
+ifneq ($(WITH_GAPPS),true)
+PRODUCT_PACKAGES += \
+    ThemePicker
 endif
 
 PRODUCT_PACKAGES += \
@@ -136,7 +140,7 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 PRODUCT_PACKAGES += \
     libjni_latinimegoogle
 
-ifneq ($(WITH_GAPPS),true)
+ifneq (true,$(filter true, $(WITH_GAPPS) $(WITH_CORE_GAPPS)))
 # Pixel sysconfig
 PRODUCT_COPY_FILES += \
     vendor/aosp/prebuilt/common/etc/sysconfig/pixel.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel.xml \

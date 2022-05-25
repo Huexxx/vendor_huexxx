@@ -1,4 +1,10 @@
-ifeq ($(WITH_GAPPS),true)
+ifeq (true,$(filter true, $(WITH_GAPPS) $(WITH_CORE_GAPPS)))
+ifeq ($(WITH_CORE_GAPPS),true)
+
+$(call inherit-product-if-exists, vendor/gms/products/gms_core.mk)
+
+else
+
 $(call inherit-product-if-exists, vendor/gms/products/gms.mk)
 
 # Common Overlay
@@ -11,6 +17,7 @@ PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS +=  \
 
 # Dex preopt
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-    NexusLauncherRelease
+    NexusLauncherReleaseMod
 
+endif
 endif
