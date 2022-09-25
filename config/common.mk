@@ -23,15 +23,17 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.com.android.dateformat=MM-dd-yyyy \
     persist.sys.disable_rescue=true
 
-ifeq ($(TARGET_BUILD_VARIANT),eng)
-# Disable ADB authentication
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += ro.adb.secure=0
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.usb.config=adb
-else
+ifeq ($(TARGET_BUILD_VARIANT),user)
 # Enable ADB authentication
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += ro.adb.secure=1
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.usb.config=none
+else
+# Disable ADB authentication
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += ro.adb.secure=0
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.usb.config=adb
+endif
 
+ifneq ($(TARGET_BUILD_VARIANT),eng)
 # Disable extra StrictMode features on all non-engineering builds
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.strictmode.disable=true
 endif
