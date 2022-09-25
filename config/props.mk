@@ -26,26 +26,29 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.disable_rescue=true \
     ro.config.calibration_cad=/system/etc/calibration_cad.xml
 
-
-ifeq ($(TARGET_BUILD_VARIANT),eng)
-    # Disable ADB authentication
-    PRODUCT_DEFAULT_PROPERTY_OVERRIDES := \
-        ro.adb.secure=0 \
-        ro.secure=0 \
-        persist.service.adb.enable=1
-else
+ifeq ($(TARGET_BUILD_VARIANT),user)
     # Enable ADB authentication
     PRODUCT_SYSTEM_DEFAULT_PROPERTIES += ro.adb.secure=1
-
-    # Disable extra StrictMode features on all non-engineering builds
-    PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.strictmode.disable=true
-
+    PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.usb.config=none
 
     PRODUCT_DEFAULT_PROPERTY_OVERRIDES := \
         ro.adb.secure=1 \
         ro.secure=1 \
         persist.service.adb.enable=0 \
         ro.debuggable = 0
+else
+    # Disable ADB authentication
+    PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.usb.config=adb
+
+    PRODUCT_DEFAULT_PROPERTY_OVERRIDES := \
+        ro.adb.secure=0 \
+        ro.secure=0 \
+        persist.service.adb.enable=1
+endif
+
+ifneq ($(TARGET_BUILD_VARIANT),eng)
+# Disable extra StrictMode features on all non-engineering builds
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.strictmode.disable=true
 endif
 
 # Enable support of one-handed mode
