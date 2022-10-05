@@ -234,7 +234,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
     setupwizard.feature.baseline_setupwizard_enabled=true \
     setupwizard.feature.show_pai_screen_in_main_flow.carrier1839=false \
     setupwizard.feature.show_pixel_tos=true \
-    setupwizard.feature.skip_button_use_mobile_data.carrier1839=true \
+    setupwizard.feature.skip_button_use_mobile_data.carrier1839=true
 
 # OTA
 $(call inherit-product, vendor/aosp/config/ota.mk)
