@@ -64,7 +64,7 @@
 
     <!-- Component names of the services which will keep critical code path warm -->
     <string-array name="config_keep_warming_services" translatable="false">
-        <item>com.google.android.GoogleCamera/com.google.android.apps.camera.prewarm.NoOpPrewarmService</item>
+        <item>com.google.android.GoogleCameraEng/com.google.android.apps.camera.prewarm.NoOpPrewarmService</item>
     </string-array>
 
     <!-- Package name(s) containing location provider support. These packages will be auto-granted
