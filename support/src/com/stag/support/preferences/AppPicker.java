@@ -89,7 +89,7 @@ public class AppPicker extends ListActivity {
         // If we need to blacklist apps, this is where we list them
         String[] blacklist_packages = {
                 "com.google.android.as", // Actions Services
-                "com.google.android.GoogleCamera", // Google camera
+                "com.google.android.GoogleCameraEng", // Google camera
                 "com.google.android.imaging.easel.service", // Pixel Visual Core Service
                 "com.android.traceur" // System Tracing (Google spyware lol)
         };
