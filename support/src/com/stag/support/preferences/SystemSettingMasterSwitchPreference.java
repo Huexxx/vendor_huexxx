@@ -19,20 +19,23 @@ package com.stag.support.preferences;
 import android.content.Context;
 import android.util.AttributeSet;
 
-public class CustomSystemSeekBarPreference extends CustomSeekBarPreference {
+import com.stag.support.preferences.SystemSettingsStore;
 
-    public CustomSystemSeekBarPreference(Context context, AttributeSet attrs, int defStyle) {
+public class SystemSettingMasterSwitchPreference extends MasterSwitchPreference {
+
+    public SystemSettingMasterSwitchPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         setPreferenceDataStore(new SystemSettingsStore(context.getContentResolver()));
     }
 
-    public CustomSystemSeekBarPreference(Context context, AttributeSet attrs) {
+    public SystemSettingMasterSwitchPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
         setPreferenceDataStore(new SystemSettingsStore(context.getContentResolver()));
     }
 
-    public CustomSystemSeekBarPreference(Context context) {
-        super(context, null);
+    public SystemSettingMasterSwitchPreference(Context context) {
+        super(context);
         setPreferenceDataStore(new SystemSettingsStore(context.getContentResolver()));
     }
+
 }

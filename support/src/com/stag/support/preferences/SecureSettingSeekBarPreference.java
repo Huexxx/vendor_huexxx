@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 AICP
+ * Copyright (C) 2016-2019 crDroid Android Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,20 +19,28 @@ package com.stag.support.preferences;
 import android.content.Context;
 import android.util.AttributeSet;
 
-public class CustomSecureSeekBarPreference extends CustomSeekBarPreference {
+public class SecureSettingSeekBarPreference extends CustomSeekBarPreference {
 
-    public CustomSecureSeekBarPreference(Context context, AttributeSet attrs, int defStyle) {
+    public SecureSettingSeekBarPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         setPreferenceDataStore(new SecureSettingsStore(context.getContentResolver()));
     }
 
-    public CustomSecureSeekBarPreference(Context context, AttributeSet attrs) {
+    public SecureSettingSeekBarPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
         setPreferenceDataStore(new SecureSettingsStore(context.getContentResolver()));
     }
 
-    public CustomSecureSeekBarPreference(Context context) {
+    public SecureSettingSeekBarPreference(Context context) {
         super(context, null);
         setPreferenceDataStore(new SecureSettingsStore(context.getContentResolver()));
+    }
+
+    @Override
+    protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
+        if (defaultValue == null) {
+            defaultValue = 0;
+        }
+        setValue(restoreValue ? getPersistedInt((Integer) defaultValue) : (Integer) defaultValue);
     }
 }

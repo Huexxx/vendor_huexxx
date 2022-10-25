@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016-2017 The Dirty Unicorns Project
+ * Copyright (C) 2016 The Dirty Unicorns Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,14 +23,14 @@ import android.content.res.TypedArray;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewParent;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
 import androidx.preference.*;
 
 import com.stag.support.R;
@@ -50,6 +50,7 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
     private int mDefaultValue = -1;
     private int mMax = 100;
     private String mUnits = "";
+    private String mDefaultText = "";
     private SeekBar mSeekBar;
     private TextView mTitle;
     private TextView mStatusText;
@@ -65,16 +66,21 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
 
         mAllowEdit = attrs.getAttributeBooleanValue(null, "allowEditText", false);
         mMax = attrs.getAttributeIntValue(ANDROIDNS, "max", 100);
-        mMin = attrs.getAttributeIntValue(ANDROIDNS, "min", 0);
+        mMin = attrs.getAttributeIntValue(SETTINGS_NS, "min", 0);
         mDefaultValue = attrs.getAttributeIntValue(ANDROIDNS, "defaultValue", -1);
         if (mDefaultValue > mMax) {
             mDefaultValue = mMax;
         }
         mUnits = getAttributeStringValue(attrs, SETTINGS_NS, "units", "");
-
+        mDefaultText = getAttributeStringValue(attrs, SETTINGS_NS, "defaultText",
+                            context.getResources().getString(R.string.default_text));
         Integer id = a.getResourceId(R.styleable.CustomSeekBarPreference_units, 0);
         if (id > 0) {
             mUnits = context.getResources().getString(id);
+        }
+        id = a.getResourceId(R.styleable.CustomSeekBarPreference_defaultText, 0);
+        if (id > 0) {
+            mDefaultText = context.getResources().getString(id);
         }
 
         try {
@@ -87,8 +93,7 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
 
         a.recycle();
         mSeekBar = new SeekBar(context, attrs);
-        mSeekBar.setMax(mMax);
-        mSeekBar.setMin(mMin);
+        mSeekBar.setMax(mMax - mMin);
         mSeekBar.setOnSeekBarChangeListener(this);
         setLayoutResource(R.layout.preference_custom_seekbar);
     }
@@ -150,7 +155,11 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
         }
         mTextContainer = (View) view.findViewById(R.id.text_container);
         mStatusText = (TextView) view.findViewById(R.id.seekBarPrefValue);
-        mStatusText.setText(String.valueOf(mCurrentValue) + mUnits);
+        if (mCurrentValue == mDefaultValue) {
+            mStatusText.setText(mDefaultText);
+        } else {
+            mStatusText.setText(String.valueOf(mCurrentValue) + mUnits);
+        }
 
         if (mAllowEdit) {
             mTextContainer.setOnLongClickListener(new View.OnLongClickListener() {
@@ -162,11 +171,13 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
             });
         }
 
-        mSeekBar.setProgress(mCurrentValue);
+        mSeekBar.setProgress(mCurrentValue - mMin);
         mTitle = (TextView) view.findViewById(android.R.id.title);
 
         view.setDividerAllowedAbove(false);
         //view.setDividerAllowedBelow(false);
+
+        mSeekBar.setEnabled(isEnabled());
     }
 
     private void showEditDialog() {
@@ -180,7 +191,7 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext)
                 .setView(editDialogView)
                 .setTitle(mContext.getString(R.string.seek_value_edit_label))
-                .setPositiveButton(R.string.ok,
+                .setPositiveButton(R.string.dlg_ok,
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -204,13 +215,12 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
 
     public void setMax(int max) {
         mMax = max;
-        mSeekBar.setMax(mMax);
+        mSeekBar.setMax(mMax - mMin);
     }
 
     public void setMin(int min) {
         mMin = min;
-        mSeekBar.setMin(mMin);
-        mSeekBar.setMax(mMax);
+        mSeekBar.setMax(mMax - mMin);
     }
 
     public void setIntervalValue(int value) {
@@ -223,26 +233,34 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        int newValue = progress;
-        if (mInterval != 1 && newValue % mInterval != 0)
+        int newValue = progress + mMin;
+        if (newValue > mMax)
+            newValue = mMax;
+        else if (newValue < mMin)
+            newValue = mMin;
+        else if (mInterval != 1 && newValue % mInterval != 0)
             newValue = Math.round(((float) newValue) / mInterval) * mInterval;
 
         // change rejected, revert to the previous value
         if (!callChangeListener(newValue)) {
-            seekBar.setProgress(mCurrentValue);
+            seekBar.setProgress(mCurrentValue - mMin);
             return;
         }
         // change accepted, store it
         mCurrentValue = newValue;
         if (mStatusText != null) {
-            mStatusText.setText(String.valueOf(newValue) + mUnits);
+            if (newValue == mDefaultValue) {
+                mStatusText.setText(mDefaultText);
+            } else {
+                mStatusText.setText(String.valueOf(newValue) + mUnits);
+            }
         }
         persistInt(newValue);
     }
 
     public void refresh(int newValue) {
         // this will trigger onProgressChanged and refresh everything
-        mSeekBar.setProgress(newValue);
+        mSeekBar.setProgress(newValue - mMin);
     }
 
     @Override
@@ -261,21 +279,29 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
     }
 
     @Override
-    protected void onSetInitialValue(boolean restorePersistedValue, Object defaultValue) {
-        // when using PreferenceDataStore, restorePersistedValue is always true (see Preference class for reference)
-        // so we load the persistent value with getPersistedInt if available in the data store, 
-        // and use defaultValue as fallback (onGetDefaultValue has been already called and it loaded the android:defaultValue attr from our xml).
-        if (defaultValue == null) {
-            // if we forgot to add android:defaultValue, default to 0
-            defaultValue = 0;
+    protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
+        if (restoreValue) {
+            mCurrentValue = getPersistedInt(mCurrentValue);
         }
-        mCurrentValue = getPersistedInt((Integer) defaultValue);
+        else {
+            int temp = 0;
+            try {
+                temp = (Integer) defaultValue;
+            } catch (Exception ex) {
+                Log.e(TAG, "Invalid default value: " + defaultValue.toString());
+            }
+            persistInt(temp);
+            mCurrentValue = temp;
+        }
     }
 
     public void setDefaultValue(int value) {
         mDefaultValue = value;
         if (mDefaultValue > mMax) {
             mDefaultValue = mMax;
+        }
+        if (mCurrentValue == mDefaultValue && mStatusText != null) {
+            mStatusText.setText(mDefaultText);
         }
     }
 
