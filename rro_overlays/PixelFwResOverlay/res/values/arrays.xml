@@ -4,7 +4,7 @@
         <item>no_oem_unlock</item>
     </array-->
     <array name="config_keep_warming_services">
-        <item>com.google.android.GoogleCamera/com.google.android.apps.camera.prewarm.NoOpPrewarmService</item>
+        <item>com.google.android.GoogleCameraEng/com.google.android.apps.camera.prewarm.NoOpPrewarmService</item>
     </array>
     <array name="config_locationExtraPackageNames">
         <item>com.google.android.gms.location.history</item>
