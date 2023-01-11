@@ -121,7 +121,7 @@
     <string name="config_headlineFontFamilyMedium" translateable="false">sans-serif-medium</string>
 
     <!-- Colon separated list of package names that should be granted DND access -->
-    <string name="config_defaultDndAccessPackages" translatable="false">com.google.android.gms:com.google.android.GoogleCamera:com.google.intelligence.sense:com.google.android.settings.intelligence</string>
+    <string name="config_defaultDndAccessPackages" translatable="false">com.google.android.gms:com.google.android.GoogleCameraEng:com.google.intelligence.sense:com.google.android.settings.intelligence</string>
 
     <!-- An array of packages for which notifications cannot be blocked.
          Should only be used for core device functionality that must not be
