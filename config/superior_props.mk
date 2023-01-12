@@ -34,8 +34,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.support_one_handed_mode=true
 
 # Blur
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.launcher.blur.appLaunch=false
+#PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+#    ro.launcher.blur.appLaunch=false
 
 # Disable remote keyguard animation
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
