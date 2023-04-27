@@ -162,8 +162,11 @@ PRODUCT_PACKAGES += \
 
 # # Config
 PRODUCT_PACKAGES += \
+     Launcher3QuickStep \
      SimpleDeviceConfig \
-     RepainterServicePriv
+     RepainterServicePriv \
+     ThemePicker \
+     WallpaperPicker2
 
 # Storage manager
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
@@ -195,7 +198,7 @@ PRODUCT_PACKAGES += \
 # Dex preopt
 PRODUCT_DEXPREOPT_SPEED_APPS += \
     SystemUIGoogle \
-    NexusLauncherRelease
+    Launcher3QuickStep
 
 ifeq ($(TARGET_SUPPORTS_64_BIT_APPS), true)
 # Use 64-bit dex2oat for better dexopt time.
