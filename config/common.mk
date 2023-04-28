@@ -312,6 +312,13 @@ else
 # GMS
 $(call inherit-product, vendor/gms/products/gms.mk)
 
+# ThemePicker Overlays
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
+    vendor/cherish/overlay-gms
+
+DEVICE_PACKAGE_OVERLAYS += \
+    vendor/cherish/overlay-gms/common
+
 # RRO Overlays
 $(call inherit-product, vendor/cherish/config/rro_overlays.mk)
 endif
