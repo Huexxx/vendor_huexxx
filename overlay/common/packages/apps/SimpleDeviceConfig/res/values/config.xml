@@ -221,9 +221,6 @@
         <item>device_personalization_services/WallpaperEffects__return_texturedmesh_with_error_status=true</item>
         <item>device_personalization_services/WallpaperEffects__use_gpu=true</item>
 
-        <!-- Pixel Launcher -->
-        <item>launcher/ENABLE_SMARTSPACE_ENHANCED=true</item>
-
         <!-- System Ui -->
         <item>systemui/clipboard_overlay_show_actions=true</item>
         <item>systemui/quick_access_wallet_enabled=true</item>
@@ -245,5 +242,30 @@
         <!-- ART heap compaction for cached apps -->
         <item>activity_manager/use_compaction=true</item>
 
+    </string-array>
+
+    <string-array name="pixel_devices">
+        <item>felix</item>
+        <item>tangorpro</item>
+        <item>lynx</item>
+        <item>cheetah</item>
+        <item>panther</item>
+        <item>bluejay</item>
+        <item>oriole</item>
+        <item>raven</item>
+        <item>barbet</item>
+        <item>redfin</item>
+        <item>bramble</item>
+        <item>sunfish</item>
+        <item>coral</item>
+        <item>flame</item>
+        <item>bonito</item>
+        <item>sargo</item>
+        <item>crosshatch</item>
+        <item>blueline</item>
+        <item>taimen</item>
+        <item>walleye</item>
+        <item>marlin</item>
+        <item>sailfish</item>
     </string-array>
 </resources>
