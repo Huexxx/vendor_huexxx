@@ -4,6 +4,7 @@ PRODUCT_PACKAGES += \
     Gallery2 \
     Contacts \
     Dialer \
+    Jelly \
     LatinIME \
     SettingsIntelligenceGoogle \
     SoundPickerGoogleRelease
