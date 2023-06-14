@@ -69,8 +69,10 @@ endif
 # Enable WiFi Display
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.wfd.nohdcp=1 \
-    persist.debug.wfd.enable=1 \
     persist.sys.wfd.virtual=0
+
+PRODUCT_SYSTEM_PROPERTIES += \
+    persist.debug.wfd.enable=1
 
 # Blurs
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
