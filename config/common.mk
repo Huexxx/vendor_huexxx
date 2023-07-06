@@ -102,7 +102,7 @@ endif
 
 # Some permissions
 PRODUCT_COPY_FILES += \
-    vendor/cherish/config/permissions/backup.xml:system/etc/sysconfig/backup.xml \
+    vendor/cherish/config/permissions/backup.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/backup.xml \
     vendor/cherish/config/permissions/cherish-sysconfig.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/cherish-sysconfig.xml
 
 # Copy all custom init rc files
