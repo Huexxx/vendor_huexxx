@@ -36,6 +36,7 @@
         <item>org.lineageos.setupwizard</item> <!-- LineageOS SetupWizard -->
         <item>com.google.android.contacts</item>
         <item>com.google.android.apps.wellbeing</item>
+        <item>com.google.android.GoogleCamera</item>
         <item>com.google.android.GoogleCameraEng</item>
         <item>com.google.android.settings.intelligence</item>
         <item>com.android.settings.intelligence</item>
