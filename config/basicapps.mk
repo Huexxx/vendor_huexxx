@@ -17,3 +17,8 @@ DEVICE_PACKAGE_OVERLAYS += \
     
 # Build
 PRODUCT_BROKEN_VERIFY_USES_LIBRARIES := true
+
+# Permissions
+PRODUCT_COPY_FILES += \
+    vendor/cherish/config/permissions/privapp-permissions-cherish-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-cherish-product.xml \
+    vendor/cherish/config/permissions/default-permissions-cherish-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/default-permissions/default-permissions-cherish-product.xml
