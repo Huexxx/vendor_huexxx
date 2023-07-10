@@ -6,6 +6,7 @@ PRODUCT_PACKAGES += \
     Dialer \
     Jelly \
     LatinIME \
+    SecurityHub \
     SettingsIntelligenceGoogle \
     SoundPickerGoogleRelease
     
