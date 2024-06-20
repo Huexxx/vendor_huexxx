@@ -368,4 +368,8 @@ $(call inherit-product, vendor/cherish/config/clocks.mk)
 # Pixel Framework
 $(call inherit-product-if-exists, vendor/pixel-framework/config.mk)
 
+# Cloned app exemption
+PRODUCT_COPY_FILES += \
+    vendor/cherish/prebuilt/common/etc/sysconfig/preinstalled-packages-platform-cherish-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/preinstalled-packages-platform-cherish-product.xml
+
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
