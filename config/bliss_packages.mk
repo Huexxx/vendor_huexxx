@@ -5,6 +5,7 @@ PRODUCT_PACKAGES += \
 # Bliss Packages
 PRODUCT_PACKAGES += \
     Aperture \
+    AvatarPicker \
     BlissUpdater \
     BlissSystemUI \
     Contacts \
