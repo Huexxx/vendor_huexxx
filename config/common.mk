@@ -188,11 +188,6 @@ $(call inherit-product-if-exists, vendor/SystemUIClocks/product.mk)
 
 # Gapps
 ifeq ($(BLISS_BUILD_VARIANT), gapps)
-$(call inherit-product, vendor/gapps/products/gapps.mk)
-endif
-
-# PixelGapps
-ifeq ($(BLISS_BUILD_VARIANT), pixelgapps)
 $(call inherit-product, vendor/gms/products/gms.mk)
 endif
 
