@@ -46,7 +46,6 @@ SOONG_CONFIG_blissGlobalVars += \
     sdmcore_has_is_display_hw_available_func \
     target_camera_package_name \
     gralloc_handle_has_ubwcp_format \
-    target_health_charging_control_charging_path \
     target_health_charging_control_charging_enabled \
     target_health_charging_control_charging_disabled \
     target_health_charging_control_deadline_path \
@@ -66,6 +65,11 @@ SOONG_CONFIG_blissGlobalVars += \
     target_powershare_path \
     target_powershare_enabled \
     target_powershare_disabled
+
+ifneq ($(TARGET_HEALTH_CHARGING_CONTROL_CHARGING_PATH),)
+SOONG_CONFIG_blissGlobalVars += \
+    target_health_charging_control_charging_path
+endif
 
 SOONG_CONFIG_NAMESPACES += blissNvidiaVars
 SOONG_CONFIG_blissNvidiaVars += \
@@ -142,7 +146,9 @@ SOONG_CONFIG_blissGlobalVars_aapt_version_code := $(shell date -u +%Y%m%d)
 SOONG_CONFIG_blissGlobalVars_bootloader_message_offset := $(BOOTLOADER_MESSAGE_OFFSET)
 SOONG_CONFIG_blissGlobalVars_additional_gralloc_10_usage_bits := $(TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS)
 SOONG_CONFIG_blissGlobalVars_target_camera_package_name := $(TARGET_CAMERA_PACKAGE_NAME)
+ifneq ($(TARGET_HEALTH_CHARGING_CONTROL_CHARGING_PATH),)
 SOONG_CONFIG_blissGlobalVars_target_health_charging_control_charging_path := $(TARGET_HEALTH_CHARGING_CONTROL_CHARGING_PATH)
+endif
 SOONG_CONFIG_blissGlobalVars_target_health_charging_control_charging_enabled := $(TARGET_HEALTH_CHARGING_CONTROL_CHARGING_ENABLED)
 SOONG_CONFIG_blissGlobalVars_target_health_charging_control_charging_disabled := $(TARGET_HEALTH_CHARGING_CONTROL_CHARGING_DISABLED)
 SOONG_CONFIG_blissGlobalVars_target_health_charging_control_deadline_path := $(TARGET_HEALTH_CHARGING_CONTROL_DEADLINE_PATH)
