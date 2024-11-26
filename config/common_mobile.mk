@@ -32,3 +32,10 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 # SystemUI plugins
 PRODUCT_PACKAGES += \
     QuickAccessWallet
+
+# TFLite service
+PRODUCT_PACKAGES += libtensorflowlite_jni
+
+PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
+    system/lib/libtensorflowlite_jni.so \
+    system/lib64/libtensorflowlite_jni.so
