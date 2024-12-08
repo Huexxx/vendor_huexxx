@@ -13,11 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 load("//build/make/core/release_config.scl", "value")
 
 values = [
     # keep-sorted start numeric=yes
-    value("RELEASE_ACONFIG_VALUE_SETS", "aconfig_value_set-bliss-ap3a"),
+    value("RELEASE_ACONFIG_VALUE_SETS", "aconfig_value_set-bliss-ap4a"),
     # keep-sorted end
 ]
