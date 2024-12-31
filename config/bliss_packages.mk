@@ -30,6 +30,7 @@ PRODUCT_PACKAGES += \
     Recorder \
     Seedvault \
     ThemesStub \
+    Twelve \
     WallpaperPicker2 \
     WeatherIcons
 
