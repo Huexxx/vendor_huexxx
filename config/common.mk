@@ -188,7 +188,11 @@ $(call inherit-product-if-exists, vendor/SystemUIClocks/product.mk)
 
 # Gapps
 ifeq ($(BLISS_BUILD_VARIANT), gapps)
+ifneq ($(wildcard vendor/gms/products/gms.mk),)
 $(call inherit-product, vendor/gms/products/gms.mk)
+else
+$(call inherit-product, vendor/gapps/products/gapps.mk)
+endif
 endif
 
 # Plugins
