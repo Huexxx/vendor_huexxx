@@ -153,7 +153,8 @@ endif
 
 # StitchImage
 PRODUCT_PACKAGES += \
-    StitchImage
+    StitchImage \
+    PermissionControllerOverlay
 
 # Face Unlock
 TARGET_FACE_UNLOCK_SUPPORTED ?= $(TARGET_SUPPORTS_64_BIT_APPS)
